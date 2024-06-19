@@ -5,21 +5,10 @@ import subprocess
 from playwright.sync_api import sync_playwright, expect
 from percy import percy_snapshot
 
-USER_NAME = os.environ.get("BROWSERSTACK_USERNAME", "BROWSERSTACK_USERNAME")
-ACCESS_KEY = os.environ.get("BROWSERSTACK_ACCESS_KEY", "BROWSERSTACK_ACCESS_KEY")
 
-
-def test_session(capability):
+def test_session():
     with sync_playwright() as p:
-        # Setup the browser context with BrowserStack capabilities
-        clientPlaywrightVersion = (
-            str(subprocess.getoutput("playwright --version")).strip().split(" ")[1]
-        )
-        capability["client.playwrightVersion"] = clientPlaywrightVersion
-        cdpUrl = "wss://cdp.browserstack.com/playwright?caps=" + urllib.parse.quote(
-            json.dumps(capability)
-        )
-        browser = p.chromium.connect(cdpUrl)
+        browser = p.chromium.launch()
         context = browser.new_context(viewport={"width": 1280, "height": 1024})
 
         # Start a new page
@@ -74,28 +63,8 @@ def test_session(capability):
 
 
 def mark_test_status(status, reason, page):
-    page.evaluate(
-        "_ => {}",
-        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"'
-        + status
-        + '", "reason": "'
-        + reason
-        + '"}}',
-    )
+    print(f"Test Status: {status}, Reason: {reason}")
 
 
 if __name__ == "__main__":
-    chrome_on_ventura = {
-        "browser": "chrome",
-        "browser_version": "latest",
-        "os": "osx",
-        "os_version": "ventura",
-        "name": "Percy Playwright Example [Web]",
-        "build": "percy-playwright-python-example",
-        "browserstack.user": USER_NAME,
-        "browserstack.key": ACCESS_KEY,
-    }
-
-    capabilities_list = [chrome_on_ventura]
-    for capability in capabilities_list:
-        test_session(capability)
+    test_session()

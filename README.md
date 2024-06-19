@@ -32,9 +32,10 @@ $ pip3 install -r requirements.txt
 $ npm install
 ```
 
-This tutorial specifically uses Browserstack Automate to run playwright test.
+This tutorial specifically uses Browserstack Automate for Percy on Automate to run playwright test.
+For Percy Web you can run the scripts directly after setting up PERCY_TOKEN.
 
-**Note:** In case of web we can use local browsers as test browsers as well for this tutorial we are using Browserstack Automate as test browser. Feel free to update them in web folder as per your requirement.
+**Note:** In case of web we are using local browser feel free to update them as per you requirement. You don't need Browserstack Automate setup for the same.
 For automate you will need credentials so refer to following instructions to get the same.
 
 1. You will need a BrowserStack `username` and `access key`. To obtain your access credentials, [sign up](https://www.browserstack.com/users/sign_up?utm_campaign=Search-Brand-India&utm_source=google&utm_medium=cpc&utm_content=609922405128&utm_term=browserstack) for a free trial or [purchase a plan](https://www.browserstack.com/pricing).
@@ -70,7 +71,7 @@ $ set PERCY_TOKEN="<your token here>"
 $ $Env:PERCY_TOKEN="<your token here>"
 ```
 
-Set the necessary **BROWSERSTACK ENVIRONMENT** variables
+Set the necessary **BROWSERSTACK ENVIRONMENT** variables, **only required for Percy on Automate examples**
 
 **Unix**
 
@@ -98,7 +99,7 @@ Alternatively you can also update `USER_NAME`, `ACCESS_KEY` with Browserstack Us
 Considering all the above steps are done, we will run our tests, which will create automate session as well as percy build.
 
 #### For Percy Web
-**Note:** In case of web we can use local browsers as test browsers as well for this tutorial we are using Browserstack Automate as test browser. Feel free to update them in web folder as per your requirement.
+**Note:** In case of web we are using local browser feel free to update them as per you requirement. You don't need automate setup for the same.
 
 ``` shell
 $ npx percy exec -- python3 tests/web/test.py
