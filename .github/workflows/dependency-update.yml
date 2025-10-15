@@ -78,7 +78,6 @@ jobs:
         if: ${{ steps.cpr.outputs.pull-request-number == '' }}
         run: |
           echo "No changes detected; no PR opened. Skipping Percy run."
-          echo "pr_created=0" >> $GITHUB_OUTPUT
         id: nopr
 
       # === Run Percy Web on the PR branch ===
@@ -167,7 +166,7 @@ jobs:
             });
 
       - name: Upload Percy logs
-        if: always() && ${{ steps.cpr.outputs.pull-request-number != '' }}
+        if: always() && steps.cpr.outputs.pull-request-number != ''
         uses: actions/upload-artifact@v4
         with:
           name: percy-web-log
