@@ -16,7 +16,8 @@ npm](https://nodejs.org/en/download/) and
 
 Clone the example application and install dependencies:
 
-Minimum required `@percy/cli` version is `1.28.8-beta.3` onwards for this to work correctly. If you already have `@percy/cli` installed please update it to latest or minium required version.
+Minimum required `@percy/cli` version is `1.28.8-beta.3` onwards for this to work correctly. This repository was tested with `@percy/cli` version `1.31.3`.
+The Python dependencies used in these examples were pinned and tested with: `playwright==1.55.0`, `percy-playwright==1.0.1`, and `requests==2.32.5`.
 
 ```bash
 $ git clone https://github.com/percy/example-percy-playwright-python.git
